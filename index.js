@@ -179,7 +179,9 @@ Template.prototype.render = function(options, callback) {
   var layout = options.layout;
   var model = options.model;
   var layoutModel = _.merge({}, this.options.config, layout);
-
+  if (this.isLayout) {
+    this.master = path.join(this.options.dirname, model.layout||layoutModel.layout);
+  }
   // render the sections
   for (var key in this.templates) {
     if (this.templates.hasOwnProperty(key)) {
